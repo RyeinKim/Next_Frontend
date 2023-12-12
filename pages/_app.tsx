@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Head from "next/head";
 import Script from "next/script";
 import Header from "@/components/Header";
+import NavBar from "@/components/NavBar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
               src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"
             />
           <Header />
+          <NavBar />
         <Component {...pageProps} />
       </>
   );

@@ -76,6 +76,7 @@ nav ul {
 nav ul li {
     list-style: none;
 }
+nav span,
 nav a {
     text-decoration-line: none;
     border-right: 1px solid gray;
@@ -83,14 +84,13 @@ nav a {
     padding: 0;
 }
 nav a:hover,
-nav a:focus {
+nav a:focus,
+nav span:hover,
+nav span:focus{
     text-decoration-line: underline;
-}
-
-nav a:hover,
-nav a:active {
     text-decoration: none;
 }
+
 
 section {
     margin: 5px;
