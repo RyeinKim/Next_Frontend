@@ -1,18 +1,17 @@
 import Link from 'next/link';
-import styles from '../styles/index.module.css';
 
 const NavBar = () => {
     return (
         <nav>
-            <div className={styles.dropmenu}>
-                <ul className={styles.no_dot}>
+            <div className="dropmenu">
+                <ul className="no_dot">
                     <li>
                         <Link href="/"><span>Home</span></Link>
                     </li>
                     <li>
                         <a href="#">Board</a>
                         <ul>
-                            <li><Link href="/"><span>공지사항</span></Link></li>
+                            <li><Link href="/board/notice"><span>공지사항</span></Link></li>
                             <li><Link href="/"><span>자유게시판</span></Link></li>
                             <li><Link href="/"><span>질문답변</span></Link></li>
                         </ul>
