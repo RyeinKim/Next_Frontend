@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <header>
             <div className="inner">
-                <Link href="/index" passHref>
+                <Link href="/" passHref>
                     <span style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                         <Image src="/assets/img.png" alt="Logo" width={60} height={60} />
                         <h3 style={{ margin: '0' }}>Computer<br />Software<br />Engineering</h3>
@@ -14,7 +14,7 @@ const Header = () => {
                 </Link>
                 <ul className="no_dot">
                     <li>
-                        <Link href="/" passHref>
+                        <Link href="/users/signin" passHref>
                             <span>Sign in</span>
                         </Link>
                     </li>
