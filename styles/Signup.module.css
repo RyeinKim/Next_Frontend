@@ -3,11 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&family=Noto+Sans+KR:wght@500;900&family=Roboto:wght@400;900&display=swap');
 
 .wrapper {
-    min-height: 100dvh;
+    min-height: 80vh; /* 전체 화면의 높이에 맞춤 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* 상단에 내용을 정렬 */
     align-items: center;
+    position: relative; /* 푸터를 위한 상대적 위치 지정 */
 }
 
 .signUpH2 {
@@ -51,8 +52,9 @@
 }
 /*===============footer===============*/
 .SignupFooter {
-    clear: both;
-    padding: 0;
+    position: absolute; /* 절대 위치 */
+    bottom: 0; /* 하단에 고정 */
+    width: 100%; /* 전체 너비 */
 }
 .footerContent {
     display: flex;

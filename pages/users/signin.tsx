@@ -2,6 +2,26 @@ import Head from 'next/head'
 import styles from '@/styles/Signin.module.css'
 import Link from "next/link";
 
+import Auth from "../api/auth";
+
+const handleLogin = async () => {
+    const userEmail = document.getElementById('userEmail') as HTMLInputElement | null;
+    const userPw = document.getElementById('userPw') as HTMLInputElement | null;
+
+    if (userEmail && userPw) {
+        try {
+            const data = await Auth.login(userEmail.value, userPw.value);
+            console.log('로그인 성공:', data);
+            // 로그인 처리 로직
+        } catch (error) {
+            console.error('로그인 에러: ', error);
+        }
+    } else {
+        // Handle the case where one or both elements don't exist
+        console.error('Form elements not found!');
+    }
+}
+
 const SigninPage = () => {
     return (
         <>
@@ -18,7 +38,7 @@ const SigninPage = () => {
                         <p className={styles.info}>패스워드</p>
                         <input type="password" id="userPw"/><br/>
                     </div>
-                    <input type="button" id="login_btn" value="로그인"/>
+                    <input type="button" id="login_btn" onClick={handleLogin} value="로그인"/>
                     <p className={styles.forgot}>
                         <Link href="/find_email"><span className={styles.findlink}>Forgot Email?</span></Link>
                     </p>

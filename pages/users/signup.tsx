@@ -2,6 +2,28 @@ import Head from 'next/head'
 import styles from '@/styles/Signup.module.css';
 import Link from "next/link";
 
+import Users from '../api/users';
+
+const handleRegister = (event: any) => {
+    event.preventDefault(); // 기본 제출 이벤트 중지
+
+    const userEmail = document.getElementById('userEmail') as HTMLInputElement | null;
+    const userPw = document.getElementById('userPw') as HTMLInputElement | null;
+    const userName = document.getElementById('userName') as HTMLInputElement | null;
+    const stNum = document.getElementById('stNum') as HTMLInputElement | null;
+    const userPhoneNum = document.getElementById('userPhoneNum') as HTMLInputElement | null;
+
+    if (userEmail && userPw && userName && stNum && userPhoneNum) {
+        try {
+            const data = Users.register(userEmail.value, userPw.value, userName.value, stNum.value, userPhoneNum.value);
+            console.log('회원가입 성공:', data);
+            // 회원가입 처리 로직
+        } catch (error) {
+            console.error('회원가입 에러: ', error);
+        }
+    }
+}
+
 const SignUpPage = () => {
     return (
         <>
@@ -12,7 +34,7 @@ const SignUpPage = () => {
             <div className={styles.wrapper}>
                 <div className={styles.signup}>
                     <h2 className={styles.signUpH2}>Sign Up</h2>
-                    <form>
+                    <form onSubmit={handleRegister}>
                         <div className={styles.inout}>
                             <p className={styles.info}>이메일</p>
                             <input type="email" id="userEmail" placeholder="email@address.com" size={20} required/>
@@ -44,7 +66,7 @@ const SignUpPage = () => {
                                 이용약관 동의
                             </p>
                         </div>
-                        <input type="submit" id="register_btn" value="가입하기"/>
+                        <input type="submit" id="register_btn" onClick={handleRegister} value="가입하기"/>
                     </form>
                 </div>
             </div>
@@ -68,7 +90,7 @@ const SignUpPage = () => {
                         </li>
                         <li className={styles.footerLi}>
                             <Link href="/">
-                                <span className={styles.footerSpan}>Notice</span>
+                                <span className={styles.footerSpan}>공지사항</span>
                             </Link>
                         </li>
                     </ul>
