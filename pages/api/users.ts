@@ -5,7 +5,7 @@ const register = async (
     stNum: string,
     phoneNum: string,
 ) => {
-    fetch('http://localhost:3001/users/signup', {
+    fetch('http://13.209.129.44:3001/users/signup', {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

@@ -14,7 +14,7 @@ const Aside = () => {
         if (token) {
             setIsLogin(true);
             // 토큰이 있으면 백엔드에 사용자 정보 요청
-            fetch('http://localhost:3001/auth/check', {
+            fetch('http://13.209.129.44:3001/auth/check', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,

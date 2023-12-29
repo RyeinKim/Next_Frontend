@@ -1,6 +1,6 @@
 const login = async (email: string, password: string) => {
     try {
-        const response = await fetch('http://localhost:3001/auth/login', {
+        const response = await fetch('http://13.209.129.44:3001/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
