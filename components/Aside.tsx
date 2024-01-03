@@ -7,6 +7,7 @@ const Aside = () => {
     const [isLogin, setIsLogin] = useState(false);
     const [username, setUsername] = useState('');
     const [stNum, setStNum] = useState('');
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
         // 로그인 상태를 확인
@@ -14,7 +15,7 @@ const Aside = () => {
         if (token) {
             setIsLogin(true);
             // 토큰이 있으면 백엔드에 사용자 정보 요청
-            fetch('http://13.209.129.44:3001/auth/check', {
+            fetch(`${apiUrl}/auth/check`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -53,7 +54,8 @@ const Aside = () => {
                     </li>
 
                     <li>
-                        <button type="button" id="mypage">내정보</button>
+                        {/*<button type="button" id="mypage">내정보</button>*/}
+                        <Link href="/users/myPage"><button>내정보</button></Link>
                         <button type="button" onClick={handleLogout}>로그아웃</button>
                     </li>
                 </ul>

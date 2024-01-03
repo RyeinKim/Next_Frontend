@@ -5,7 +5,9 @@ const register = async (
     stNum: string,
     phoneNum: string,
 ) => {
-    fetch('http://13.209.129.44:3001/users/signup', {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+    fetch(`${apiUrl}/users/signup`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

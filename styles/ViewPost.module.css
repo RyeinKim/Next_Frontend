@@ -1,0 +1,55 @@
+#wrapper {
+    width: 100%;
+    text-align: left;
+    min-height: 150px;
+    margin: 0 auto;
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.reply {
+    border: 1px solid #000000; /* 각 게시글을 구분하는 하단 테두리 */
+    padding: 3px; /* 게시글 내부 여백 */
+    margin-bottom: 10px; /* 게시글 간 마진 */
+}
+
+.replyHead {
+    display: block;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 10pt;
+    margin-bottom: 1px;
+}
+
+.replyBody {
+    display: block;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 9pt;
+    color: black;
+    margin-bottom: 0px;
+}
+
+#postTitleDiv {
+    margin-top: 20px;
+}
+
+#postTitle {
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: bold;
+}
+#AuthorName, #WriteDate {
+    margin-top: 0px;
+    margin-bottom: 1px;
+    font-size: 11px;
+}
+#postContentDiv {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#postContentDiv {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
