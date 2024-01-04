@@ -5,7 +5,6 @@ import Link from "next/link";
 import { withAuth } from '@/utils/withAuth';
 import { GetServerSideProps } from 'next';
 
-
 type Post = {
     postId: number;
     title: string;
@@ -78,7 +77,9 @@ export default function Notice() {
                     <div id={styles.sectionDiv}>
                         <section>
                             <h2>공지사항</h2>
-                            <button>게시글 작성</button>
+                            <Link href="/board/writePost/notice">
+                                <button>게시글 작성</button>
+                            </Link>
                             <div id="board-list">
                                 {posts.map(post => (
                                     <div key={post.postId} className={styles.post}>

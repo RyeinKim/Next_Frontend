@@ -1,10 +1,14 @@
-// pages/viewpost.tsx
+/**
+ * 현재 webmaster일 경우 게시글 삭제 기능 하고 있었음
+ * jwt-decode 문제가 계속 발생했는데 결국 해결할 수 있는 제일 쉬운 방법은
+ * 백엔드에서 auth/check api 로 값 받아오면 됨.
+ * 그렇게 해결하는 방안으로 다시 시작해볼 것.
+ */
 import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/ViewPost.module.css';
 import Cookie from "js-cookie";
 import {useRouter} from "next/router";
-import jwt_decode from "jwt-decode";
 
 type Reply = {
     replyId: number;
@@ -38,6 +42,28 @@ const PostId = () => {
     const [newReply, setNewReply] = useState('');
     const [editingReplyId, setEditingReplyId] = useState<number | null>(null);
 
+    /*useEffect(() => {
+        // 로그인 상태를 확인
+        const token = Cookie.get('accessToken');
+        if (token) {
+            setIsLogin(true);
+            // 토큰이 있으면 백엔드에 사용자 정보 요청
+            fetch(`${apiUrl}/auth/check`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setRole(data.role);
+                })
+                .catch(error => {
+                    console.error('Fetch 에러: ', error);
+                });
+        }
+    }, []);*/
+
     useEffect(() => {
         // 상태 초기화
         setTitle('');
@@ -48,8 +74,6 @@ const PostId = () => {
         // 로그인 상태를 확인
         const token = Cookie.get('accessToken');
         if (token) {
-            const decodedToken = jwt_decode(token); // 토큰 디코딩
-            setRole(decodedToken.role); // 디코드된 토큰에서 role 설정
             setIsLogin(true);
             fetch(`${apiUrl}/posts/byPostId/notice/${postId}`, {
                 method: 'GET',
@@ -63,6 +87,20 @@ const PostId = () => {
                     setContent(data.message.content); // 응답에서 content 추출하여 상태 업데이트
                     setAuthor(data.message.author); // 응답에서 author 추출하여 상태 업데이트
                     setWriteDate(data.message.createAt); // 응답에서 writeDate 추출하여 상태 업데이트
+                })
+                .catch(error => {
+                    console.error('Fetch 에러: ', error);
+                });
+
+            fetch(`${apiUrl}/auth/check`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setRole(data.role);
                 })
                 .catch(error => {
                     console.error('Fetch 에러: ', error);
@@ -280,6 +318,32 @@ const PostId = () => {
         }
     }
 
+    const handleReplyForcedDelete = async (replyId: number) => {
+        const check = confirm(`!!주의: 관리자 명령어 입니다!!\n정말로 삭제하시겠습니까?`);
+        if (check) {
+            try {
+                const token = Cookie.get('accessToken');
+                // 백엔드로 데이터 전송
+                const response = await fetch(`${apiUrl}/admin/reply/delete/notice/${replyId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    console.log(data.message);
+                    alert('댓글이 삭제되었습니다.');
+                    window.location.href = `/board/viewPost/notice/${postId}}`;
+                } else {
+                    console.error('Failed: ', data.message);
+                }
+            } catch (error) {
+                console.error('에러: ', error);
+            }
+        }
+    }
+
     return (
         <div>
             <Head>
@@ -368,6 +432,9 @@ const PostId = () => {
                                                     <span className={styles.replyBody}>{rep.reply}</span>
                                                     <a onClick={() => handleReplyEdit(rep.replyId)}>수정 | </a>
                                                     <a onClick={() => handleReplyDelete(rep.replyId)}>삭제</a>
+                                                    {role === 'webmaster' &&
+                                                        <a onClick={() => handleReplyForcedDelete(rep.replyId)}> | 강제삭제</a>
+                                                    }
                                                 </>
                                             )}
                                         </div>

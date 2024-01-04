@@ -61,3 +61,7 @@
     display: block; /* 자신만의 줄을 차지하도록 설정 */
     font-size: 10px; /* 글 내용 폰트 크기 */
 }
+
+.delUserList {
+    font-size: 12px;
+}

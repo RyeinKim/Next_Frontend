@@ -7,6 +7,7 @@ const Aside = () => {
     const [isLogin, setIsLogin] = useState(false);
     const [username, setUsername] = useState('');
     const [stNum, setStNum] = useState('');
+    const [role, setRole] = useState('');
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
     useEffect(() => {
@@ -25,6 +26,7 @@ const Aside = () => {
                 .then(data => {
                     setUsername(data.username); // 응답에서 username 추출하여 상태 업데이트
                     setStNum(data.stNum); // 응답에서 stNum 추출하여 상태 업데이트
+                    setRole(data.role);
                 })
                 .catch(error => {
                     console.error('Fetch 에러: ', error);
@@ -56,6 +58,7 @@ const Aside = () => {
                     <li>
                         {/*<button type="button" id="mypage">내정보</button>*/}
                         <Link href="/users/myPage"><button>내정보</button></Link>
+                        {role === ('webmaster' || 'admin') && <Link href="/adminPage"><button>관리자 페이지</button></Link>}
                         <button type="button" onClick={handleLogout}>로그아웃</button>
                     </li>
                 </ul>
