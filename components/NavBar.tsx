@@ -12,7 +12,7 @@ const NavBar = () => {
                         <a href="#">Board</a>
                         <ul>
                             <li><Link href="/board/notice"><span>공지사항</span></Link></li>
-                            <li><Link href="/"><span>자유게시판</span></Link></li>
+                            <li><Link href="/board/free"><span>자유게시판</span></Link></li>
                             <li><Link href="/"><span>질문답변</span></Link></li>
                         </ul>
                     </li>
