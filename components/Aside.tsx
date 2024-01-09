@@ -65,7 +65,7 @@ const Aside = () => {
             </aside>
             <aside>
                 <ul>
-                    <li><Link href="/"><span>내가쓴 글</span></Link></li>
+                    <li><Link href="/board/myWrite"><span>내가쓴 글</span></Link></li>
                     <li><Link href="/"><span>댓글단 글</span></Link></li>
                     <li><Link href="/"><span>내 스크랩</span></Link></li>
                 </ul>

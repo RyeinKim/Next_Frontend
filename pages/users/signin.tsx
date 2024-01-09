@@ -40,7 +40,7 @@ const SigninPage = () => {
                     </div>
                     <input type="button" id="login_btn" onClick={handleLogin} value="로그인"/>
                     <p className={styles.forgot}>
-                        <Link href="/find_email"><span className={styles.findlink}>Forgot Email?</span></Link>
+                        <Link href="/users/findEmail"><span className={styles.findlink}>Forgot Email?</span></Link>
                     </p>
                     <p className={styles.forgot}>
                         <Link href="/change_pass"><span className={styles.findlink}>Forgot Password?</span></Link>
