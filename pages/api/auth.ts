@@ -5,6 +5,7 @@ const login = async (email: string, password: string) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify({ email, password }),
         });
@@ -13,15 +14,12 @@ const login = async (email: string, password: string) => {
             const data = await response.json();
             const { accessToken } = data;
             document.cookie = `accessToken=${accessToken}`;
-            console.log('accessToken:', accessToken);
-            console.log(document.cookie);
-
             console.log('로그인 성공:', data);
-            alert('로그인 성공');
+            alert(data.message);
             window.location.href = '/';
         } else {
             console.error('로그인 실패');
-            alert('로그인 실패');
+            alert(`로그인 실패`);
             throw new Error('Login failed');
         }
     } catch (error) {
