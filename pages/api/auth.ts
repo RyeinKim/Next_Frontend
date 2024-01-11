@@ -12,14 +12,18 @@ const login = async (email: string, password: string) => {
 
         if (response.ok) {
             const data = await response.json();
-            const { accessToken } = data;
+            const { accessToken, message, status } = data;
+
+            if (status === 'error') {
+                alert(message);
+                return;
+            }
+
             document.cookie = `accessToken=${accessToken}`;
-            console.log('로그인 성공:', data);
-            alert(data.message);
+            alert(message);
             window.location.href = '/';
         } else {
-            console.error('로그인 실패');
-            alert(`로그인 실패`);
+            alert(`응답없음`);
             throw new Error('Login failed');
         }
     } catch (error) {
