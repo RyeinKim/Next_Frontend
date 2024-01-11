@@ -22,7 +22,6 @@ import Cookie from "js-cookie";
 
 const FindEmailPage = () => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const token = Cookie.get('accessToken');
 
     const [emailFound, setEmailFound] = useState(false);
     const [foundEmail, setFoundEmail] = useState('');
@@ -42,7 +41,6 @@ const FindEmailPage = () => {
                     method: 'Get',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
                     },
                 });
                 const data = await res.json();

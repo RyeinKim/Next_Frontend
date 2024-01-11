@@ -12,12 +12,10 @@ const handleLogin = async () => {
         try {
             const data = await Auth.login(userEmail.value, userPw.value);
             console.log('로그인 성공:', data);
-            // 로그인 처리 로직
         } catch (error) {
             console.error('로그인 에러: ', error);
         }
     } else {
-        // Handle the case where one or both elements don't exist
         console.error('Form elements not found!');
     }
 }
@@ -34,7 +32,7 @@ const SigninPage = () => {
                     <h2>Sign in</h2>
                     <div className={styles.input}>
                         <p className={styles.info}>이메일</p>
-                        <input type="text" id="userEmail"/>
+                        <input type="email" id="userEmail"/>
                         <p className={styles.info}>패스워드</p>
                         <input type="password" id="userPw"/><br/>
                     </div>
@@ -43,7 +41,7 @@ const SigninPage = () => {
                         <Link href="/users/findEmail"><span className={styles.findlink}>Forgot Email?</span></Link>
                     </p>
                     <p className={styles.forgot}>
-                        <Link href="/change_pass"><span className={styles.findlink}>Forgot Password?</span></Link>
+                        <Link href="/users/changePass"><span className={styles.findlink}>Forgot Password?</span></Link>
                     </p>
                 </div>
                 <div className={styles.signup}>
