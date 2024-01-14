@@ -3,11 +3,13 @@ const login = async (email: string, password: string) => {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const response = await fetch(`${apiUrl}/auth/login`, {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
         });
 
         if (response.ok) {
@@ -23,7 +25,6 @@ const login = async (email: string, password: string) => {
             alert(message);
             window.location.href = '/';
         } else {
-            alert(`응답없음`);
             throw new Error('Login failed');
         }
     } catch (error) {
